@@ -2,14 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>by.grsu.Solomenskay</groupId>
-	<artifactId>race</artifactId>
+	<groupId>by.grsu.solomenskay</groupId>
+	<artifactId>webapp-race</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>war</packaging>
 
 	<name>Example web-app</name>
-	<description>shop</description>
+	<description>race</description>
 
 	<properties>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -17,17 +17,41 @@
 
 	<dependencies>
 
-		<dependencies>
-		<!-- all dependencies will be here -->
-				
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		
+		 <dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.10</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
+		<pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>2.6</version>
+            </plugin>           
+          </plugins>
+        </pluginManagement>  
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
