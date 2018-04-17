@@ -1,4 +1,4 @@
-
+package by.grsu.solomenskay.datamodel;
 public class Client extends Person {
 	private String address;
 	private String telephoneNumber;
@@ -18,7 +18,7 @@ public class Client extends Person {
 		return address;
 	}
 	/**
-	 * @param adress the address to set
+	 * @param address the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;

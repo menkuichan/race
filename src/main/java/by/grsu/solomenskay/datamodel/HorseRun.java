@@ -1,3 +1,4 @@
+package by.grsu.solomenskay.datamodel;
 import java.time.*;
 
 public class HorseRun {

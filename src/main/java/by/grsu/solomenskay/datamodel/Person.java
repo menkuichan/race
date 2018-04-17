@@ -1,4 +1,4 @@
-
+package by.grsu.solomenskay.datamodel;
 public abstract class Person {
 	private String name;
 	private String surname;

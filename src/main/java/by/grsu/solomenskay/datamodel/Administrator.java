@@ -1,3 +1,4 @@
+package by.grsu.solomenskay.datamodel;
 
 public class Administrator extends Person {	
 	private String workNumber;

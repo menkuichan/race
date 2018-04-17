@@ -1,4 +1,4 @@
-
+package by.grsu.solomenskay.datamodel;
 public class Horse {
 	private String name;
 	private int age;

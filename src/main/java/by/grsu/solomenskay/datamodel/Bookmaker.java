@@ -1,4 +1,4 @@
-
+package by.grsu.solomenskay.datamodel;
 public class Bookmaker extends Person {
 		private int workExperience;
 		private String workAddress;

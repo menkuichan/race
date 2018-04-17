@@ -1,4 +1,4 @@
-
+package by.grsu.solomenskay.datamodel;
 public class Rate {
 	private int cashAmount;
 	private Horse horse;

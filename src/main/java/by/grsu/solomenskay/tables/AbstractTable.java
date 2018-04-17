@@ -1,3 +1,4 @@
+package by.grsu.solomenskay.tables;
 
 import java.io.Serializable;
 import java.util.List;
