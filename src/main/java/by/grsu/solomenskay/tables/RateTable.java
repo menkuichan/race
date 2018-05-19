@@ -7,10 +7,11 @@ import java.util.List;
 
 public class RateTable extends AbstractTable<Rate> {
     private List<Rate> rows;
+
     @Override
     public List<Rate> getRows() {
         if (rows == null) {
-            rows = new ArrayList<Rate>();
+            rows = new ArrayList<>();
         }
         return rows;
     }

@@ -1,4 +1,7 @@
 package by.grsu.solomenskay.datamodel;
-public enum RunType {
-	FLAT, TYPE, ENDURANCE
+
+import java.io.Serializable;
+
+public enum RunType implements Serializable{
+    FLAT, TYPE, ENDURANCE
 }

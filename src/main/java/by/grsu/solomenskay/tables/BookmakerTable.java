@@ -7,10 +7,11 @@ import java.util.List;
 
 public class BookmakerTable extends AbstractTable<Bookmaker> {
     private List<Bookmaker> rows;
+
     @Override
     public List<Bookmaker> getRows() {
         if (rows == null) {
-            rows = new ArrayList<Bookmaker>();
+            rows = new ArrayList<>();
         }
         return rows;
     }

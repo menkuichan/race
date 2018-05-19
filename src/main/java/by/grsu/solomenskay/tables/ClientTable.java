@@ -8,10 +8,11 @@ import java.util.List;
 
 public class ClientTable extends AbstractTable<Client> {
     private List<Client> rows;
+
     @Override
     public List<Client> getRows() {
         if (rows == null) {
-            rows = new ArrayList<Client>();
+            rows = new ArrayList<>();
         }
         return rows;
     }

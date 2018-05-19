@@ -7,10 +7,11 @@ import java.util.List;
 
 public class HorseRunTable extends AbstractTable<HorseRun> {
     private List<HorseRun> rows;
+
     @Override
     public List<HorseRun> getRows() {
         if (rows == null) {
-            rows = new ArrayList<HorseRun>();
+            rows = new ArrayList<>();
         }
         return rows;
     }
