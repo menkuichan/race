@@ -22,11 +22,10 @@ public class Bookmaker extends Person {
 
     /**
      * @param workExperience the workExperience to set
-     * @throws Exception
      */
-    public void setWorkExperience(int workExperience) throws Exception {
+    public void setWorkExperience(int workExperience) {
         if (workExperience < 0) {
-            throw new Exception("Work Experience cant be less to 0");
+            throw new IllegalStateException("Work Experience cant be less to 0");
         }
         this.workExperience = workExperience;
     }

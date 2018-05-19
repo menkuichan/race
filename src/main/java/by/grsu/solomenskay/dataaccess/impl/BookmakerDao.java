@@ -1,28 +1,26 @@
 package by.grsu.solomenskay.dataaccess.impl;
 
-import by.grsu.solomenskay.datamodel.Administrator;
+import by.grsu.solomenskay.datamodel.Bookmaker;
 import by.grsu.solomenskay.tables.AdministratorTable;
+import by.grsu.solomenskay.tables.BookmakerTable;
 
-import java.util.List;
-import java.util.Optional;
+public class BookmakerDao extends AbstractDao<BookmakerTable, Bookmaker> {
 
-public class AdministratorDao extends AbstractDao<AdministratorTable, Administrator> {
-
-    public AdministratorDao(String rootFolderPath) {
+    public BookmakerDao(String rootFolderPath) {
         super(rootFolderPath);
     }
 
     @Override
-    protected Class<AdministratorTable> getTableClass() {
-        return AdministratorTable.class;
+    protected Class<BookmakerTable> getTableClass() {
+        return BookmakerTable.class;
     }
 
     @Override
-    public Administrator update(Administrator entity) {
+    public Bookmaker update(Bookmaker entity) {
         // get existing data
-        final AdministratorTable table = deserializeFromXml();
+        final BookmakerTable table = deserializeFromXml();
         // find by ID
-        for (final Administrator row : table.getRows()) {
+        for (final Bookmaker row : table.getRows()) {
             if (row.getId().equals(entity.getId())) {
                 // found!!!
                 // copy data
@@ -30,6 +28,8 @@ public class AdministratorDao extends AbstractDao<AdministratorTable, Administra
                 row.setAge(entity.getAge());
                 row.setName(entity.getName());
                 row.setSurname(entity.getSurname());
+                row.setWorkAddress(entity.getWorkAddress());
+                row.setWorkExperience(entity.getWorkExperience());
             }
         }
         // save updated table

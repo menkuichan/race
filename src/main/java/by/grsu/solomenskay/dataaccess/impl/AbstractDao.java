@@ -1,14 +1,17 @@
 package by.grsu.solomenskay.dataaccess.impl;
 
 import by.grsu.solomenskay.dataaccess.IXmlDao;
+import by.grsu.solomenskay.datamodel.AbstractModel;
 import by.grsu.solomenskay.tables.AbstractTable;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.util.List;
+import java.util.Optional;
 
-public abstract class AbstractDao<T extends AbstractTable<E>, E> implements IXmlDao<E> {
+public abstract class AbstractDao<T extends AbstractTable<E>, E extends AbstractModel> implements IXmlDao<E> {
 
     private final XStream xStream;
     private final String rootFolderPath;
@@ -87,7 +90,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E> implements IXml
         } catch (final FileNotFoundException e) {
             return null;
         } catch (final IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException(e);
         }
         return new String(output.toByteArray());
     }
@@ -111,4 +114,52 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E> implements IXml
 
     protected abstract Class<T> getTableClass();
 
+    @Override
+    public E saveNew(E entity) {
+        // set ID
+        entity.setId(getNextId());
+        // get existing data
+        final T table = deserializeFromXml();
+        // add new row
+        table.getRows().add(entity);
+        // save data
+        serializeToXml(table);
+        return entity;
+    }
+
+    @Override
+    public E get(Long id) {
+        return Optional.of(deserializeFromXml())
+                .flatMap(table -> table.getRows()
+                        .stream()
+                        .filter(row -> row.getId().equals(id))
+                        .findAny())
+                .orElse(null);
+    }
+
+    @Override
+    public List<E> getAll() {
+        final T table = deserializeFromXml();
+        return table.getRows();
+    }
+
+    @Override
+    public void delete(Long id) {
+        final T table = deserializeFromXml();
+        table.getRows()
+                .stream()
+                .filter(row -> row.getId().equals(id))
+                .findAny()
+                .ifPresent(row -> {
+                    table.getRows().remove(row);
+                    serializeToXml(table);
+                });
+    }
+
+    @Override
+    public void deleteAll() {
+        final T table = deserializeFromXml();
+        table.getRows().clear();
+        serializeToXml(table);
+    }
 }
