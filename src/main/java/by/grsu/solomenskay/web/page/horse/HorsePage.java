@@ -20,7 +20,7 @@ public class HorsePage extends AbstractPage {
     protected void onInitialize() {
         super.onInitialize();
         final List<Horse> horses = dao.getAll();
-        add(new ListView<Horse>("horses-table", horses) {
+        add(new ListView<Horse>("horse", horses) {
             @Override
             protected void populateItem(ListItem<Horse> item) {
                 final Horse horse = item.getModelObject();

@@ -16,6 +16,6 @@
 
     <!-- 	<import resource="service-context.xml" />   -->
 
-    <context:component-scan base-package="by.grsu.pe.web.app" />
+    <context:component-scan base-package="by.grsu.solomenskay" />
 
 </beans>
