@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title>Example project</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+<link rel="stylesheet" href="custom.css" type="text/css" media="screen"
+	title="Stylesheet" />
+<wicket:header-items />
+</head>
+<body>
+	<div >
+		<wicket:container wicket:id="menu-panel"></wicket:container>
+		<wicket:child />
+	</div>
+	<div class="ft" wicket:id="footer">
+		<br /> <br /> <br /> &copy<span wicket:id="current-year" />
+	</div>
+</body>
+</html>
