@@ -128,6 +128,21 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
     }
 
     @Override
+    public E update(E entity) {
+        final T table = deserializeFromXml();
+        table.getRows()
+                .stream()
+                .filter(row -> row.getId().equals(entity.getId()))
+                .findAny()
+                .map(row -> table.getRows().indexOf(row))
+                .ifPresent(index -> {
+                    table.getRows().set(index, entity);
+                    serializeToXml(table);
+                });
+        return entity;
+    }
+
+    @Override
     public E get(Long id) {
         return Optional.of(deserializeFromXml())
                 .flatMap(table -> table.getRows()
