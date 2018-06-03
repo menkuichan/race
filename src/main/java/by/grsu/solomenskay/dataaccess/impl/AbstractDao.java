@@ -175,6 +175,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     @Override
     public void delete(Long id) {
+        log.info("Deleting entity with id {}", id);
         final T table = deserializeFromXml();
         table.getRows()
                 .stream()
@@ -188,7 +189,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     @Override
     public void deleteAll() {
-        log.info("Deleting all entities!");
+        log.info("Deleting all entities({})", this.getClass().getSimpleName());
         final T table = deserializeFromXml();
         table.getRows().clear();
         serializeToXml(table);
