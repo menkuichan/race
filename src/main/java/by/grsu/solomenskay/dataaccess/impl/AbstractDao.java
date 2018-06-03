@@ -6,15 +6,25 @@ import by.grsu.solomenskay.tables.AbstractTable;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public abstract class AbstractDao<T extends AbstractTable<E>, E extends AbstractModel> implements IXmlDao<E> {
 
+    private static final Logger log = LoggerFactory.getLogger(AbstractDao.class);
+
     private final XStream xStream;
     private final String rootFolderPath;
+
+
+    public AbstractDao() {
+        this("target/data/" + UUID.randomUUID().toString() + ".xml");
+    }
 
     public AbstractDao(final String rootFolderPath) {
         super();
@@ -67,6 +77,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
      */
     private void writeToFile(final String xml) {
         try {
+            log.debug("Writing to file {}", xml);
             final File file = new File(getFileName());
             if (!file.exists()) {
                 file.createNewFile();
@@ -86,6 +97,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
     private String readFromFile() {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {
+            log.debug("Reading from file {}", getFileName());
             IOUtils.copy(new FileInputStream(getFileName()), output);
         } catch (final FileNotFoundException e) {
             return null;
@@ -116,6 +128,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     @Override
     public E saveNew(E entity) {
+        log.info("Saving entity with id={}", entity.getId());
         // set ID
         entity.setId(getNextId());
         // get existing data
@@ -129,6 +142,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     @Override
     public E update(E entity) {
+        log.info("Updating entity with id={}", entity.getId());
         final T table = deserializeFromXml();
         table.getRows()
                 .stream()
@@ -144,6 +158,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     @Override
     public E get(Long id) {
+        log.info("Reading entity with id={}", id);
         return Optional.of(deserializeFromXml())
                 .flatMap(table -> table.getRows()
                         .stream()
@@ -173,6 +188,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     @Override
     public void deleteAll() {
+        log.info("Deleting all entities!");
         final T table = deserializeFromXml();
         table.getRows().clear();
         serializeToXml(table);

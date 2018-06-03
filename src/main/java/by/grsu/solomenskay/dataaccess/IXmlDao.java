@@ -1,8 +1,9 @@
 package by.grsu.solomenskay.dataaccess;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface IXmlDao<E> {
+public interface IXmlDao<E> extends Serializable {
 
 	E saveNew(E entity);
 
