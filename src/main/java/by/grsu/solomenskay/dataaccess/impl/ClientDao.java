@@ -2,9 +2,7 @@ package by.grsu.solomenskay.dataaccess.impl;
 
 import by.grsu.solomenskay.datamodel.Client;
 import by.grsu.solomenskay.tables.ClientTable;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ClientDao extends AbstractDao<ClientTable, Client> {
 
     public ClientDao(String rootFolderPath) {

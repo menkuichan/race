@@ -18,7 +18,7 @@ public abstract class AbstractDao<T extends AbstractTable<E>, E extends Abstract
 
     private static final Logger log = LoggerFactory.getLogger(AbstractDao.class);
 
-    private final XStream xStream;
+    private  final XStream xStream;
     private final String rootFolderPath;
 
 

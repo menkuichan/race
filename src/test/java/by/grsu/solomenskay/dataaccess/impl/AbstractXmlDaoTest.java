@@ -19,7 +19,7 @@ public abstract class AbstractXmlDaoTest<T extends AbstractModel> {
 
     @After
     public void after() {
-        dao.deleteAll();
+//        dao.deleteAll();
     }
 
     protected abstract T generateEntity();

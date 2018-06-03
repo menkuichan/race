@@ -4,7 +4,6 @@ import by.grsu.solomenskay.datamodel.Horse;
 import by.grsu.solomenskay.tables.HorseTable;
 import org.springframework.stereotype.Component;
 
-@Component
 public class HorseDao extends AbstractDao<HorseTable, Horse> {
 
     public HorseDao(String rootFolderPath) {

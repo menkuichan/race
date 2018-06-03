@@ -6,7 +6,6 @@ import by.grsu.solomenskay.tables.HorseRunTable;
 import org.springframework.stereotype.Component;
 
 
-@Component
 public class HorseRunDao extends AbstractDao<HorseRunTable, HorseRun> {
 
     public HorseRunDao(String rootFolderPath) {

@@ -1,6 +1,7 @@
 package by.grsu.solomenskay.web.component.menu;
 
 import by.grsu.solomenskay.web.page.home.HomePage;
+import by.grsu.solomenskay.web.page.horse.HorsePage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
@@ -20,5 +21,12 @@ public class MenuPanel extends Panel {
 				setResponsePage(new HomePage());
 			}
 		});
+
+        add(new Link("link-horses") {
+            @Override
+            public void onClick() {
+                setResponsePage(new HorsePage());
+            }
+        });
 	}
 }
